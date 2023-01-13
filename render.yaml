@@ -1,30 +1,24 @@
 services:
   - type: web
-    name: gotosocial
+    name: akkoma
     env: docker
-    repo: https://github.com/tamarou/gotosocial-render.git # optional
-    plan: starter # $7/mo - required for persistent disk
+    repo: https://github.com/tamarou/akkoma-render.git # optional
     autoDeploy: false
-    disk:
-      name: data
-      mountPath: /data
     envVars:
-      - key: GTS_HOST
-        value: gotosocial.onrender.com
-      - key: GTS_DB_ADDRESS
+      - key: DB_HOST
         fromDatabase:
-          name: gotosocial
+          name: akkoma
           property: host
-      - key: GTS_DB_USER
+      - key: DB_USER
         fromDatabase:
-          name: gotosocial
+          name: akkoma
           property: user
-      - key: GTS_DB_PASSWORD
+      - key: DB_PASSWORD
         fromDatabase:
-          name: gotosocial
+          name: akkoma
           property: password
 databases:
-  - name: gotosocial
-    databaseName: gotosocial
+  - name: akkoma
+    databaseName: akkoma
     plan: starter # $7/mo - required for persistent database
     ipAllowList: [] # only allow internal connections
