@@ -5,6 +5,8 @@ services:
     repo: https://github.com/tamarou/akkoma-render.git # optional
     autoDeploy: false
     envVars:
+      - key: DOMAIN
+        value: akkoma.example.com
       - key: DB_HOST
         fromDatabase:
           name: akkoma
