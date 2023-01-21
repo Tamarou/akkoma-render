@@ -1,12 +1,19 @@
+databases:
+  - name: db.example.com
+    databaseName: akkoma
+    plan: starter # $7/mo - required for persistent database
+    ipAllowList: [] # only allow internal connections
 services:
-  - type: web
-    name: akkoma
+  - name: akkoma.example.com
+    type: web
     env: docker
-    repo: https://github.com/tamarou/akkoma-render.git # optional
+    repo: https://github.com/tamarou/akkoma-render.git # change to your repo
     autoDeploy: false
+    domains:
+      - akkoma.example.com # change to your custom domain
     envVars:
       - key: DOMAIN
-        value: akkoma.example.com
+        value: akkoma.example.com # must match the value in domains
       - key: DB_HOST
         fromDatabase:
           name: akkoma
@@ -19,8 +26,3 @@ services:
         fromDatabase:
           name: akkoma
           property: password
-databases:
-  - name: akkoma
-    databaseName: akkoma
-    plan: starter # $7/mo - required for persistent database
-    ipAllowList: [] # only allow internal connections
